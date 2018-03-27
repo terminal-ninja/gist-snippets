@@ -1,5 +1,3 @@
-// var btnz = document.getElementById('pull-gists');
-
 // btnz.addEventListener('click', loadGists);
 let filterInput = document.getElementById('search');
 const copyBtn = document.getElementById('copy');
@@ -20,7 +18,8 @@ document.addEventListener('click', submitGist);
     // Add event listener
 filterInput.addEventListener('keyup', search);
 
-loadGists();
+// loadGists();
+
 
 function loadGists()
 {
@@ -53,7 +52,7 @@ function submitGist(e)
 			github.createtGist(description, content)
 
 		.then(data => {
-			// ui.showGists(data.gists);
+			ui.displayNewGist(data.newGist);
 			loadGists();
 			ui.showMainContent();
 			console.log(data);
@@ -70,8 +69,9 @@ function newGist()
 }
 function goHome()
 {
-	const ui = new UI;
-	ui.showMainContent()
+	loadGists();
+	// const ui = new UI;
+	// ui.showMainContent()
 }
 function login()
 {

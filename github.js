@@ -20,6 +20,7 @@ class Github {
 		
 		const gistInit = { method: 'GET',
 			headers: new Headers({
+				// 'Cache-Control': 'no-cache',
 			   'Authorization': 'Basic ' + this.userAuth()
 			 })
            };

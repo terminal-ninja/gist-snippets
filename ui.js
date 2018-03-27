@@ -61,6 +61,11 @@ class UI {
 	// 	document.getElementById('repos').innerHTML = output;
 	// }
 
+	displayNewGist(gist) {
+		console.log(gist.description);
+		console.log(gist.files['file1.txt'].content);
+	}
+
 	showGists(gists) {
 		let output = '';
 		const sorted = gists.sort( (a,b) => {
