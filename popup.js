@@ -21,7 +21,7 @@ filterInput.addEventListener('keyup', search);
 // loadGists();
 
 
-function loadGists()
+function loadGists(e, newGistRes = null)
 {
 	const github = new Github;
 	const ui = new UI;
@@ -31,11 +31,27 @@ function loadGists()
 	if (user) {
 		github.getUser(user)
 
-		.then(data => {
 
-			ui.showGists(data.gists);
+		.then(data => {
+			let allGists = data.gists;
+			if (newGistRes === null) {
+				const checkTemp = localStorage.getItem('gs_temp');
+				newGistRes = JSON.parse(checkTemp);
+			}
+			console.log(newGistRes);
+			if (newGistRes !== null) {
+				const check = allGists.filter( gist => gist.id === newGistRes.id);
+				if(check.length === 0) {
+					console.log(check);
+					allGists.push(newGistRes);
+				}
+				
+			}
+
+			ui.showGists(allGists);
 			
 			console.log(data);
+			console.log(allGists);
 		});
 	}
 
@@ -53,7 +69,9 @@ function submitGist(e)
 
 		.then(data => {
 			ui.displayNewGist(data.newGist);
-			loadGists();
+			const save = JSON.stringify(data.newGist);
+			localStorage.setItem("gs_temp", save);
+			loadGists(e, data.newGist);
 			ui.showMainContent();
 			console.log(data);
 		});

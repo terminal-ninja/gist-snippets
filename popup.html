@@ -56,6 +56,38 @@
     .navbar-nav {
       flex-direction: row;
     }
+
+
+
+    .lds-dual-ring {
+      position: absolute;
+      top: 54%;
+      left: 44%;
+      width: 64px;
+      height: 64px;
+      display: none;
+      
+    }
+    .lds-dual-ring:after {
+      content: " ";
+      display: block;
+      width: 46px;
+      height: 46px;
+      margin: 1px;
+      border-radius: 50%;
+      border: 5px solid #18BC9C;
+      border-color: #18BC9C transparent #18BC9C transparent;
+      animation: lds-dual-ring 1.2s linear infinite;
+    }
+    @keyframes lds-dual-ring {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
   </style>
   <link rel="stylesheet" href="dracula.css">
 </head>
@@ -85,6 +117,7 @@
                   <!-- </div> -->
                 </nav>
               </div>
+      <div class="lds-dual-ring"></div>
       <div id="login-container"></div>
       <div style="display: none" id="new-gist-container"></div>
       <div class="content">
